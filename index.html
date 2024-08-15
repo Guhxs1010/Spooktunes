@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpookTunes</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="img/logotunes.png" />
+  </head>
+  <body>
+    <div class="linha"></div>
+    <header>
+      <div class="cabecalho">
+        <div class="imagens">
+          <img class="logo" src="./img/logotunes.png" alt="Logotipo" />
+          <img class="nomelogo" src="./img/logonome.png" alt="Logotipo Nome" />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#artistas">Artistas</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Carrossel de Imagens -->
+    <div class="carrossel">
+      <div class="slides">
+        <div class="slide"><img src="./img/slide1.png" alt="Slide 1" /></div>
+        <div class="slide"><img src="./img/slide2.png" alt="Slide 2" /></div>
+      </div>
+      <div class="indicators">
+        <button class="indicator active"></button>
+        <button class="indicator"></button>
+      </div>
+    </div>
+
+    <!-- Seção do Scroll Horizontal -->
+    <div class="racesWrapper">
+<div class="linha"></div>
+      <div class="texto">
+        <h2>Albuns Artistas</h2>
+      </div>
+
+      <div class="races">
+        <div>
+         <div class="novo">
+            <div class="caixa">
+              <div class="img2">
+                <img class="img" src="img/1.png" alt="" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div>
+          <div class="novo">
+            <div class="caixa">
+              <div class="img2">
+                <img class="img" src="img/2.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="novo">
+            <div class="caixa">
+              <div class="img2">
+                <img class="img" src="img/3.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="fundo">
+        <div class="imgfundo">
+            <img class="fundoimg" src="img/fundo1.png" alt="">
+        </div>
+    </div>
+    <div class="cards">
+        
+           
+    <div class="caixa">
+    <div class="card">
+        <div class="content">
+          <div class="front">
+            <div class="imgfront">
+            <img src="img/4.png" alt="">
+        </div>
+          </div>
+          <div class="back">
+            Back!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caixa2">
+        <div class="card">
+            <div class="content">
+              <div class="front">
+                Front
+              </div>
+              <div class="back">
+                Back!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="caixa3">
+            <div class="card">
+                <div class="content">
+                  <div class="front">
+                    Front
+                  </div>
+                  <div class="back">
+                    Back!
+                  </div>
+                </div>
+              </div>
+            </div>
+
+</div>
+
+    <!-- Importando GSAP e ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script>
+      // JavaScript para o carrossel de imagens
+      const slides = document.querySelector(".slides");
+      const indicators = document.querySelectorAll(".indicator");
+      const slideCount = document.querySelectorAll(".slide").length;
+      let index = 0;
+
+      function showSlide(n) {
+        if (n >= slideCount) {
+          index = 0;
+        } else if (n < 0) {
+          index = slideCount - 1;
+        } else {
+          index = n;
+        }
+        slides.style.transform = `translateX(-${index * 100}%)`;
+        updateIndicators();
+      }
+
+      function updateIndicators() {
+        indicators.forEach((indicator, i) => {
+          indicator.classList.toggle("active", i === index);
+        });
+      }
+
+      indicators.forEach((indicator, i) => {
+        indicator.addEventListener("click", () => {
+          showSlide(i);
+        });
+      });
+
+      // Inicializa o carrossel
+      showSlide(index);
+
+      // Configura o carrossel para mudar de slide automaticamente
+      setInterval(() => {
+        showSlide(index + 1);
+      }, 3000);
+
+      // JavaScript para o scroll horizontal
+      gsap.registerPlugin(ScrollTrigger);
+
+      const races = document.querySelector(".races");
+
+      // Função para calcular a quantidade de rolagem horizontal
+      function getScrollAmount() {
+        let racesWidth = races.scrollWidth;
+        return racesWidth - window.innerWidth;
+      }
+
+      // Animação GSAP para mover horizontalmente
+      gsap.to(races, {
+        x: () => -getScrollAmount(),
+        duration: 3,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".racesWrapper",
+          start: "top top",
+          end: () => `+=${getScrollAmount()}`,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+          // markers: true, // Remova isso em produção
+        },
+      });
+    </script>
+  </body>
+</html>
