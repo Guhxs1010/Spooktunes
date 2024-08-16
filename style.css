@@ -13,6 +13,14 @@ body {
   background-color: #873780;
   height: 40px;
 }
+.linha2 {
+  background-color: #274472;
+  height: 40px;
+}
+.linha3 {
+  background-color: #633312;
+  height: 40px;
+}
 
 /* Estilo para o cabeçalho */
 header {
@@ -296,6 +304,17 @@ nav ul li a:hover {
   font-size: 3vw;
   color: #873780;
 }
+/* Estilo para o título sobre a imagem */
+.titulo3 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Centraliza horizontalmente */
+  font-family: "Staatliches", cursive;
+  font-size: 3vw;
+  color: #274472;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Adiciona sombra para melhorar a legibilidade */
+  z-index: 10; /* Garante que o título esteja acima da imagem */
+}
 .novo {
   width: 50vw;
   height: 90vh;
@@ -325,13 +344,20 @@ nav ul li a:hover {
 p {
   color: white;
 }
-/* Estilo para a imagem de fundo */
+/* Estilo para o contêiner de fundo */
 .fundo {
-  margin-top: 5%;
-  left: 0;
+  position: relative; /* Permite o posicionamento absoluto dos elementos internos */
   width: 100vw;
+  overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites */
+  margin-top: 5%;
 }
-
+.anuncio img{
+  position: relative; /* Permite o posicionamento absoluto dos elementos internos */
+  width: 100vw;
+  overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites */
+  margin-top: -18%;
+}
+/* Estilo para a imagem de fundo */
 .fundo img {
   width: 100%;
   height: 100%;
