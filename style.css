@@ -136,6 +136,7 @@ nav ul li a:hover {
   border-radius: 10px;
 }
 
+
 .overlay h2 {
   margin: 0 0 10px;
   font-size: 17px;
@@ -147,6 +148,9 @@ nav ul li a:hover {
   font-size: 13px;
 }
 .sub{
+  color: black;
+}
+.sub2{
   color: black;
 }
 .overlay .button {
@@ -315,6 +319,11 @@ nav ul li a:hover {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Adiciona sombra para melhorar a legibilidade */
   z-index: 10; /* Garante que o título esteja acima da imagem */
 }
+.titulo4 {
+  font-family: "Staatliches", cursive;
+  font-size: 3vw;
+  color:#292929;
+}
 .novo {
   width: 50vw;
   height: 90vh;
@@ -351,12 +360,72 @@ p {
   overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites */
   margin-top: 5%;
 }
-.anuncio img{
+/* Estilo para o contêiner de anúncio */
+.anuncio {
   position: relative; /* Permite o posicionamento absoluto dos elementos internos */
   width: 100vw;
-  overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites */
+  overflow: hidden;
   margin-top: -18%;
 }
+
+/* Estilo para a imagem de fundo do anúncio */
+.anuncio img {
+  width: 100%;
+  height: auto; /* Ajusta a altura da imagem mantendo a proporção */
+  display: block; /* Remove qualquer espaço em branco abaixo da imagem */
+}
+
+/* Estilo para o overlay */
+.overlay2 {
+  position: absolute; /* Permite que o overlay fique sobre a imagem */
+  top: 61%; /* Ajusta a posição vertical para o centro da imagem */
+  left: 60.5%; /* Ajusta a posição horizontal para o centro da imagem */
+  transform: translate(-50%, -50%); /* Centraliza o overlay na posição ajustada */
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Estilo para o conteúdo do overlay */
+.balao2 {
+  width: 70%;
+  margin: 0 auto; /* Centraliza o conteúdo */
+}
+
+/* Estilo para o título no overlay */
+.overlay2 h2 {
+  margin: 0 0 10px;
+  font-size: 17px;
+}
+
+/* Estilo para o parágrafo no overlay */
+.overlay2 p {
+  margin: 0 0 10px;
+  margin-top: 20px;
+  width: 350px;
+  font-size: 13px;
+}
+
+/* Estilo para o botão no overlay */
+.overlay2 .button2 {
+  margin-top: 20px;
+  margin-left: 20px;
+  display: inline-block;
+  padding: 10px 30px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #274472; /* Cor do botão */
+  font-family: "Staatliches", cursive;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.overlay2 .button2:hover {
+  background-color: #112e5e; /* Cor do botão ao passar o mouse */
+}
+
 /* Estilo para a imagem de fundo */
 .fundo img {
   width: 100%;
