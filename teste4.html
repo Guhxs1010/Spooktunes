@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Logo Layout</title>
+    <style>
+        /* Container for the overall layout */
+        .container {
+            position: relative;
+            padding: 3rem 0;
+            overflow: hidden;
+            background: #f8f8f8; /* Optional background for contrast */
+        }
+
+        /* Gradient overlay on the left and right sides */
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 10%;
+            pointer-events: none; /* Allow clicks to pass through */
+        }
+
+        .gradient-overlay.left {
+            left: 0;
+            background: linear-gradient(to right, rgba(248, 248, 248, 1) 0%, rgba(248, 248, 248, 0) 100%);
+            z-index: 1;
+        }
+
+        .gradient-overlay.right {
+            right: 0;
+            background: linear-gradient(to left, rgba(248, 248, 248, 1) 0%, rgba(248, 248, 248, 0) 100%);
+            z-index: 1;
+        }
+
+        /* Grid container for logos */
+        .grid-container {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 1rem;
+            overflow: hidden;
+        }
+
+        /* Animation for moving logos */
+        .top-section, .bottom-section {
+            display: flex;
+            animation: move-logos 10s linear infinite;
+            white-space: nowrap; /* Prevent logos from wrapping */
+        }
+
+        .bottom-section {
+            animation-direction: reverse; /* Move in reverse direction */
+        }
+
+        @keyframes move-logos {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Logo styles */
+        .logo {
+            flex: 0 0 auto; /* Prevent logos from shrinking */
+            margin: 0 0.5rem;
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        /* Media queries for responsiveness */
+        @media (min-width: 768px) {
+            .container {
+                padding: 5rem 0;
+                opacity: 1; /* Increased opacity for better visibility */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Gradient overlays -->
+        <div class="gradient-overlay left"></div>
+        <div class="gradient-overlay right"></div>
+
+        <!-- Top section with logos aligned left-to-right -->
+        <div class="top-section grid-container">
+            <div class="logo"><img src="logo1.png" alt="Logo 1"></div>
+            <div class="logo"><img src="logo2.png" alt="Logo 2"></div>
+            <div class="logo"><img src="logo3.png" alt="Logo 3"></div>
+            <!-- Add more logos as needed -->
+        </div>
+
+        <!-- Bottom section with logos aligned right-to-left -->
+        <div class="bottom-section grid-container">
+            <div class="logo"><img src="logo4.png" alt="Logo 4"></div>
+            <div class="logo"><img src="logo5.png" alt="Logo 5"></div>
+            <div class="logo"><img src="logo6.png" alt="Logo 6"></div>
+            <!-- Add more logos as needed -->
+        </div>
+    </div>
+
+</body>
+</html>

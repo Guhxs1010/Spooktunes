@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reprodutor de Música Personalizado</title>
+    <!-- Incluir Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff;
+        color: #333;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      .player-container {
+        position: relative; /* Para permitir o uso de z-index nos elementos filhos */
+        display: inline-block;
+        margin-top: 150px;
+        background-color: #9e5287;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 350px;
+        height: 500px;
+      }
+
+      .control-btn {
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 24px; /* Tamanho do ícone */
+        background: transparent;
+      }
+      .control-btn:hover {
+        background-color: #8c4072; /* Cor ao passar o mouse */
+      }
+      .progress {
+        width: 300px;
+        height: 5px;
+        background: #c5c5c5;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        display: inline-block;
+      }
+      .progress-bar {
+        height: 100%;
+        background: #fff;
+        border-radius: 5px;
+      }
+      .image-container {
+        margin: 20px auto;
+        max-width: 500px;
+      }
+      .image-container img {
+        width: 100%;
+        border-radius: 10px;
+      }
+      #carouselImage {
+        margin-top: -150px;
+      }
+      .track-info {
+        margin-top: 20px;
+        color: white;
+        font-size: 16px;
+      }
+      .faixa1,
+      .faixa2 {
+        background-color: #873780;
+        height: 40px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        z-index: 1; /* Mantém as faixas acima da div mas abaixo dos outros elementos */
+      }
+      .faixa2{
+        height: 150px;
+      }
+      .faixa1 {
+        top: 0; /* Fixa a faixa superior no topo do container */
+      }
+
+      .faixa2 {
+        bottom: 0; /* Fixa a faixa inferior no fundo do container */
+      }
+      .image-container,
+      .track-info,
+      .progress,
+      .control-btn {
+        position: relative;
+        z-index: 2; /* Garante que esses elementos fiquem acima das faixas */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="player-container">
+      <div class="faixa1"></div>
+      <div class="image-container">
+        <img id="carouselImage" src="" alt="Imagem" />
+      </div>
+      <div class="track-info" id="trackInfo">Descrição da faixa</div>
+      <audio id="audio"></audio>
+      <br />
+      <div class="faixa2"></div>
+      <button class="control-btn" onclick="previousTrack()">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button class="control-btn" id="playPauseBtn" onclick="togglePlayPause()">
+        <i class="fa-solid fa-play"></i>
+      </button>
+      <button class="control-btn" onclick="nextTrack()">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+      <br />
+      <div class="progress" onclick="setProgress(event)">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+    </div>
+
+    <script>
+      const audio = document.getElementById("audio");
+      const progressBar = document.getElementById("progress-bar");
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const carouselImage = document.getElementById("carouselImage");
+      const trackInfo = document.getElementById("trackInfo");
+
+      const tracks = [
+        { src: "music/andrey.mp3", image: "img/1.png", description: "Andrey" },
+        {
+          src: "music/next-track.mp3",
+          image: "img/2.png",
+          description: "Pericles",
+        },
+        {
+          src: "music/another-track.mp3",
+          image: "img/3.png",
+          description: "Pink Floyd",
+        },
+      ];
+
+      let currentTrackIndex = 0;
+      let isPlaying = false;
+
+      function playAudio() {
+        audio.play();
+        isPlaying = true;
+        updatePlayPauseButton();
+      }
+
+      function pauseAudio() {
+        audio.pause();
+        isPlaying = false;
+        updatePlayPauseButton();
+      }
+
+      function togglePlayPause() {
+        if (isPlaying) {
+          pauseAudio();
+        } else {
+          playAudio();
+        }
+      }
+
+      function updatePlayPauseButton() {
+        const icon = isPlaying ? "pause" : "play";
+        playPauseBtn.innerHTML = `<i class="fa-solid fa-${icon}"></i>`;
+      }
+
+      function loadTrack(index) {
+        audio.src = tracks[index].src;
+        carouselImage.src = tracks[index].image;
+        trackInfo.textContent = tracks[index].description; // Atualiza o texto da faixa
+        audio.play();
+        isPlaying = true;
+        updatePlayPauseButton();
+      }
+
+      function nextTrack() {
+        currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+        loadTrack(currentTrackIndex);
+      }
+
+      function previousTrack() {
+        currentTrackIndex =
+          (currentTrackIndex - 1 + tracks.length) % tracks.length;
+        loadTrack(currentTrackIndex);
+      }
+
+      function setProgress(event) {
+        const totalWidth = event.currentTarget.offsetWidth;
+        const clickX = event.offsetX;
+        const duration = audio.duration;
+        audio.currentTime = (clickX / totalWidth) * duration;
+      }
+
+      audio.addEventListener("timeupdate", () => {
+        const progressPercent = (audio.currentTime / audio.duration) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+      });
+
+      loadTrack(currentTrackIndex);
+    </script>
+  </body>
+</html>

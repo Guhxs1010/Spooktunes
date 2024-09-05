@@ -33,8 +33,6 @@
         </div>
         <div class="slide">
           <img src="./img/slide2.png" alt="Slide 2" />
-          <!-- Texto e botão sobre a imagem do slide 2 -->
-
           <div class="overlay">
             <div class="balao">
               <h2 class="titulo">
@@ -56,11 +54,10 @@
       </div>
     </div>
 
-    <!-- Seção do Scroll Horizontal -->
     <div class="racesWrapper">
       <div class="linha"></div>
       <div class="texto">
-        <h2 class="titulo2">Albuns Artistas</h2>
+        <h2 class="titulo2">Álbuns Artistas</h2>
       </div>
 
       <div class="races">
@@ -82,7 +79,6 @@
             </div>
           </div>
         </div>
-
         <div>
           <div class="novo">
             <div class="caixa">
@@ -94,7 +90,6 @@
         </div>
       </div>
     </div>
-    
 
     <div class="fundo">
       <div class="linha2"></div>
@@ -108,13 +103,13 @@
               <div class="back">
                 <h1 class="titulocd">Michael Jackson</h1>
                 <p class="subcd">
-                  Michael Jackson, o "Rei do Pop", marcou a música com hits como Thriller e o icônico "moonwalk".
+                  Michael Jackson, o "Rei do Pop", marcou a música com hits como
+                  Thriller e o icônico "moonwalk".
                 </p>
               </div>
             </div>
           </div>
         </div>
-
         <div class="caixa">
           <div class="card">
             <div class="content">
@@ -122,13 +117,14 @@
               <div class="back">
                 <h1 class="titulocd">Péricles</h1>
                 <p class="subcd">
-                  Péricles é um destacado cantor de samba e pagode, conhecido por sua voz e sucessos tanto com o Exaltasamba quanto em carreira solo.
+                  Péricles é um destacado cantor de samba e pagode, conhecido
+                  por sua voz e sucessos tanto com o Exaltasamba quanto em
+                  carreira solo.
                 </p>
               </div>
             </div>
           </div>
         </div>
-
         <div class="caixa">
           <div class="card">
             <div class="content">
@@ -145,26 +141,50 @@
         </div>
       </div>
     </div>
-<div class="linha3"></div>
-    <div class="anuncio">
-      
-      <img src="./img/slide2.png" alt="Slide 2" />
-      <!-- Texto e botão sobre a imagem do slide 2 -->
 
-      <div class="overlay2">
-        <div class="balao2">
-          <h2 class="titulo4">
-            Transforme Suas Ideias em Melodia com a Spooktunes!
-          </h2>
-          <p class="sub2">
-            Transforme suas ideias em realidade com nossa equipe e
-            equipamentos de última geração. Entre em contato para um
-            orçamento e descubra como podemos dar vida ao seu som!
-          </p>
-          <button href="#" class="button2">SOLICITE SEU ORÇAMENTO</button>
+    <div class="linha3"></div>
+    <div class="linha4"></div>
+
+    <div class="video">
+      <div class="icones">
+        <div class="botoes">
+        <div class="tw">
+          <button class="twitter">
+            <img src="img/icone/Xtw.png" alt="" style="width: 30px" />
+          </button>
+        </div>
+        <div class="youtube">
+          <button class="yt">
+            <img src="img/icone/youtube.png" alt="" style="width: 45px; margin-top: -2.5px;" />
+          </button>
+        </div>
+        <div class="fc">
+          <button class="face">
+            <img src="img/icone/facebook.png" alt="" style="width: 30px" />
+          </button>
+        </div>
+        <div class="instagram">
+          <button class="insta">
+            <img src="img/icone/Instagram_icon.png"alt="" style="width: 30px"/>
+          </button>
         </div>
       </div>
+      <div class="texto">
+        <p class="textin">Copyright © [2024] [Spooktunes]. Todos os direitos reservados.
+          Proibida a reprodução sem autorização.</p>
+      </div>
+      </div>
+
+      
+      <video
+        class="footer"
+        src="video/animacao.mp4"
+        loop
+        autoplay
+        muted
+      ></video>
     </div>
+
     <!-- Importando GSAP e ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
@@ -212,13 +232,11 @@
 
       const races = document.querySelector(".races");
 
-      // Função para calcular a quantidade de rolagem horizontal
       function getScrollAmount() {
         let racesWidth = races.scrollWidth;
         return racesWidth - window.innerWidth;
       }
 
-      // Animação GSAP para mover horizontalmente
       gsap.to(races, {
         x: () => -getScrollAmount(),
         duration: 3,
