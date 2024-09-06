@@ -10,6 +10,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Tillana:wght@400;500;600;700;800&display=swap');
+      
       body {
         font-family: Arial, sans-serif;
         background-color: #f0f8ff;
@@ -27,7 +29,7 @@
         padding: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         width: 350px;
-        height: 500px;
+        height: 350px;
       }
 
       .control-btn {
@@ -67,11 +69,13 @@
       }
       #carouselImage {
         margin-top: -150px;
+        width: 280px;
       }
       .track-info {
         margin-top: 20px;
         color: white;
-        font-size: 16px;
+        font-size: 25px;
+        font-family: "Tillana", system-ui;
       }
       .faixa1,
       .faixa2 {
@@ -87,6 +91,7 @@
       }
       .faixa1 {
         top: 0; /* Fixa a faixa superior no topo do container */
+        height: 40px;
       }
 
       .faixa2 {
@@ -134,17 +139,20 @@
       const trackInfo = document.getElementById("trackInfo");
 
       const tracks = [
-        { src: "music/andrey.mp3", image: "img/1.png", description: "Andrey" },
+        
         {
-          src: "music/next-track.mp3",
-          image: "img/2.png",
+          src: "music/pericles.mp3",
+          image: "img/periclao.png",
           description: "Pericles",
         },
         {
-          src: "music/another-track.mp3",
-          image: "img/3.png",
-          description: "Pink Floyd",
-        },
+          src: "music/jackson.mp3", 
+          image: "img/jackson.png",
+          description: "Michael Jackson",
+        }, 
+        { src: "music/naruto.mp3", image: "img/tauz.png", description: "Tauz" },
+        { src: "music/romero.mp3", image: "img/fut.png", description: "Futparodias" },
+        { src: "music/andrey.mp3", image: "img/andrey.png", description: "Andrey a Bola" },
       ];
 
       let currentTrackIndex = 0;
@@ -179,8 +187,8 @@
         audio.src = tracks[index].src;
         carouselImage.src = tracks[index].image;
         trackInfo.textContent = tracks[index].description; // Atualiza o texto da faixa
-        audio.play();
-        isPlaying = true;
+        // Remove a reprodução automática da faixa
+        isPlaying = false;
         updatePlayPauseButton();
       }
 
@@ -207,6 +215,7 @@
         progressBar.style.width = `${progressPercent}%`;
       });
 
+      // Carrega a faixa sem reproduzir automaticamente
       loadTrack(currentTrackIndex);
     </script>
   </body>
